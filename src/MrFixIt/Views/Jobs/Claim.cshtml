@@ -10,9 +10,7 @@
 @using (Html.BeginForm())
 
 {
-    @Html.HiddenFor(model => model.JobId)
-    @Html.HiddenFor(model => model.Title)
-    @Html.HiddenFor(model => model.Description)
+   <input id="jobId" value="@Model.JobId" type="hidden" /> 
 
     <h4>@Model.Title</h4>
     <input type="submit" value="Claim This Job" />

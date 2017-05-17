@@ -2,11 +2,13 @@
 
     $('.claims').click(function () {
         $.ajax({
-            type: 'GET',
-            dataType: 'html',
-            url: '@Url.Action("request-url")',
+            url: 'Jobs/Claim',
+            type: 'POST',
+            dataType: 'json',
+            data: {id : $("#jobId").val()},
             success: function (result) {
-                $('#result').html(result);
+                var resultMessage = 'This Job has been claimed!'
+                $('#result').html(resultMessage);
             }
         });
     });

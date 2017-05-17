@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MrFixIt.Models;
+using MrFixIt.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -36,16 +37,17 @@ namespace MrFixIt.Controllers
         public IActionResult Claim(int id)
         {
             var thisItem = db.Jobs.FirstOrDefault(items => items.JobId == id);
-            return View(thisItem);
+            return Json(thisItem);
         }
 
         [HttpPost]
-        public IActionResult Claim(Job job)
+        public IActionResult Claim(int id)
         {
+            Job job = db.Jobs.FirstOrDefault(items => items.JobId == id);
             job.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
             db.Entry(job).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Json(job);
         }
     }
 }

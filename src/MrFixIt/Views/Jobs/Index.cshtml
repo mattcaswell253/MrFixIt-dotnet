@@ -16,7 +16,10 @@
         </ul>
         @if (Job.Worker == null)
         {
-        <li class="btn claims" data-request-url="@Url.Action("Claim", new { @text = @Job.Title, id = Job.JobId })">This job is unclaimed. click to claim</li>
+
+            <li class="btn claims">This job is unclaimed. @Html.ActionLink("Claim This Job", "Claim", new { @text = @Job.Title, id = Job.JobId })</li>
+
+        @*<li class="btn claims" data-request-url="@Url.Action("Claim", new { @text = @Job.Title, id = Job.JobId })">This job is unclaimed. click to claim</li>*@
         
         }
         else
