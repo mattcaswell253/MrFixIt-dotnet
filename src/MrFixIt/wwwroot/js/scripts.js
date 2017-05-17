@@ -1,14 +1,15 @@
 ﻿$(document).ready(function () {
 
     $('.claims').click(function () {
+        console.log({ id: this.id });
         $.ajax({
             url: 'Jobs/Claim',
             type: 'POST',
             dataType: 'json',
-            data: {id : $("#jobId").val()},
+            data: {id : this.id},
             success: function (result) {
                 var resultMessage = 'This Job has been claimed!'
-                $('#result').html(resultMessage);
+                $('.claims').html(resultMessage);
             }
         });
     });
